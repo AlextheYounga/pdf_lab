@@ -7,7 +7,7 @@ from markdownify import markdownify
 
 def pdf_to_html(pdf_file):
 	# Extract text from the PDF
-	text = extract_text(pdf_file)
+	text = extract_text(pdf_file, caching=True)
 
 	# Create a simple HTML document
 	soup = BeautifulSoup('<html><body></body></html>', 'html.parser')
@@ -48,4 +48,8 @@ if __name__ == "__main__":
 	pdf_file = sys.argv[1]
 	html = pdf_to_html(pdf_file)
 	md = html_to_markdown(html)
-	write_markdown_to_file(pdf_file, md)
+
+	if len(md) == 0 or not md:
+		print("No text extracted from PDF")
+	else:
+		write_markdown_to_file(pdf_file, md)

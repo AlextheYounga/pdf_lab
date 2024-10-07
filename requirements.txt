@@ -1,0 +1,5 @@
+PyPDF2
+pdfminer.six 
+beautifulsoup4
+markdown
+markdownify
